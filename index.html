@@ -5,6 +5,20 @@
  <meta name="viewport" content="width=device-width, initial-scale=1"> 
  <title>Bootstrap demo</title> 
  <style>
+ #history div{
+   margin:10px;
+   border:2px solid black;
+   border-radius:12px;
+ }
+ #history p{
+   text-align: center;
+ }
+ #history div div{
+   width:100%;
+   margin:5px;
+   background: gray;
+   padding:10px;
+ }
  input[type="checkbox"]{
      display:none;
  }
@@ -100,6 +114,9 @@
 
 
   function sub(){
+    localStorage.removeItem(c);
+    localStorage.removeItem(d);
+    localStorage.removeItem(e);
        var programming=document.getElementById('programming').value;
        var learning=document.getElementById('learning').value;
        var reading=document.getElementById('reading').value;
@@ -119,26 +136,48 @@ else{
    var i=localStorage.getItem(c);
    var j=localStorage.getItem(d);
    var k=localStorage.getItem(e);
-   var s;
-   for(s=1;s<=31;s++){
+   location.reload();
+   
+}
+      }
+      var s;
+   for(s=31;s>=1;s--){
        var q=s+"p";
        var w=s+"l";
        var r=s+"r";
        if(localStorage.getItem(q) != null && localStorage.getItem(w) != null && localStorage.getItem(r) != null){
-       var prog=document.createElement("p");
-       var textnodep=document.createTextNode("Programming");
+         const history=document.getElementById("history");
+         const divprog=document.createElement("div");
+         const date=document.createElement("p");
+         const datep=document.createTextNode(s);
+         history.appendChild(datep);
+       const prog=document.createElement("p");
+       const textnodep=document.createTextNode("Programming:");
        prog.appendChild(textnodep);
-       var history=document.getElementById("history");
-       history.appendChild(prog);
-       var progDetail=document.createElement(div);
-       /*var b=document.createTextNode(localStorage.getItem(q));
-progDetail.appendChild(b);*/
-      document.write(localStorage.getItem(c)); 
-      history.appendChild(progDetail);
+       divprog.appendChild(prog);
+       var pp=document.createTextNode(localStorage.getItem(q));
+       divprog.appendChild(pp);
+       const lear=document.createElement("p");
+       const divlear=document.createElement("div");
+       const textnodeq=document.createTextNode("Learning:");
+       lear.appendChild(textnodeq);
+       divlear.appendChild(lear);
+       var ll=document.createTextNode(localStorage.getItem(w));
+      divlear.appendChild(ll);
+      const divread=document.createElement("div");
+      const read = document.createElement("p");
+      const textnoder = document.createTextNode("Reading:");
+      read.appendChild(textnoder);
+      divread.appendChild(read);
+      var rr = document.createTextNode(localStorage.getItem(r));
+      const alldiv=document.createElement("div");
+      divread.appendChild(rr);
+      alldiv.appendChild(divprog);
+      alldiv.appendChild(divlear);
+      alldiv.appendChild(divread);
+      history.appendChild(alldiv);
        }
    }
-}
-      }
   </script>
   </body>
    </html>
